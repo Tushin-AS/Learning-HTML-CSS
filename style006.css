@@ -1,0 +1,14 @@
+body {
+    background-color: powderblue;
+}
+
+h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 200%;
+    color: aliceblue;
+}
+
+p {
+    border: 2px solid blueviolet;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
