@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Dashboard</title>
+</head>
+<body>
+    <div>
+        Tour Management System
+
+        <ul>
+            <li>Dashboard</li>
+            <li>Search Tours</li>
+            <li>My Bookings</li>
+            <li>Reviews</li>
+        </ul>
+        <input type="button" value="Profile">
+    </div>
+
+    <div class="header">
+        <h4>Overview</h4>
+        <h3>Tourist Dashboard</h3>
+        <h4>Welcome, User</h4>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Find Your Next Journey</legend>
+                        <p>Search Tours</p>
+                        <table>
+                            <tr>
+                                <td>Destination</td>
+                                <td>Max Budget</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select name="destination" id="destination"></select>
+                                </td>
+                                <td>
+                                    <select name="max_budget" id="max_budget"></select>
+                                </td>
+                                <td>
+                                    <input type="button" value="Search">
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Discover</legend>
+                        <p>Popular Tours</p>
+                        <table border="1">
+                            <tr>
+                                <td>Package</td>
+                                <td>Destination</td>
+                                <td>Price</td>
+                                <td>Duration</td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Your Activity</legend>
+                        <p>My Recent Bookings</p>
+                        <table border="1">
+                            <tr>
+                                <td>Package</td>
+                                <td>Date</td>
+                                <td>Status</td>
+                                <td>Amount</td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
