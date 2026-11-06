@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Form</title>
+
+    <style>
+        .error {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <!--Form Validation-->
+    <form onsubmit="return validate(this);" novalidate>
+        <label for="mail">Email</label>
+        <input type="email" id="mail" name="mail">
+        <span id="err1" class="error"></span>
+        <br>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+        <span id="err2" class="error"></span>
+        <br>
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age">
+        <span id="err3" class="error"></span>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+
+    <script>
+        function validate(form) {
+            const email = form.mail.value;
+            const password = form.password.value;
+            const age = form.age.value;
+            let flag = true;
+
+            const err1 = document.getElementById("err1");
+            const err2 = document.getElementById("err2");
+            const err3 = document.getElementById("err3");
+
+            err1.innerHTML = "";
+            err2.innerHTML = "";
+            err3.innerHTML = "";
+
+            if (email === "") {
+                alert("Please fill up the email properly.");
+                flag = false;
+            } 
+            else {
+                const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+                if (!regex.test(email)) {
+                    err1.innerHTML = "Invalid Email!";
+                    flag = false;
+                }
+            }
+            if (password === "") {
+                err2.innerHTML = "Please fill up the password properly.";
+                flag = false;
+            } 
+            else {
+                if (password.length < 8) {
+                    err2.innerHTML = "Password must be at least 8 characters";
+                    flag = false;
+                }
+            }
+
+            if (age < 18) {
+                err3.innerHTML = "You must be 18 or over 18 years old."
+                flag = false;
+            }
+
+            return flag;
+        }
+    </script>
+</body>
+</html>

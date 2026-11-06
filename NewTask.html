@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+</head>
+<body>
+    <h1>Tech Shop</h1>
+    <h3>Checkout List</h3>
+    <hr>
+    <form action="GET" novalidate>
+        <label for="Pid">Product ID</label>
+        <input type="text" id="Pid" name="Pid">
+        <input type="button" value="Search" onclick="search();">
+        <br><br>
+        
+        <label for="Pname">Product Name</label>
+        <input type="text" id="Pname" name="Pname" readonly>
+        <br><br>
+        
+        <label for="unit_price">Unit Price</label>
+        <input type="number" id="unit_price" name="unit_price" readonly>
+        <br><br>
+        
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" name="quantity" min="1" oninput="calculate();">
+        <span id="qtyError" style="color: red;"></span>
+        <br><br>
+        
+        <label for="total_price">Total Price</label>
+        <input type="number" id="total_price" name="total_price" readonly>
+        <br><br>
+        
+        <input type="reset" value="Reset" onclick="document.getElementById('qtyError').innerText = '';">
+    </form>
+
+    <script>
+        const products = [
+            {pid: "P101", pname: "Laptop", u_price: 75000},
+            {pid: "P102", pname: "Mouse", u_price: 800},
+            {pid: "P103", pname: "Keyboard", u_price: 1500},
+            {pid: "P104", pname: "Monitor", u_price: 18000},
+            {pid: "P105", pname: "Headphone", u_price: 2500}
+        ];
+
+        function search() {
+            const pid = document.getElementById("Pid").value;
+            let found = false;
+
+            for (const product of products) {
+                if (pid === product.pid) {
+                    document.getElementById("Pname").value = product.pname;
+                    document.getElementById("unit_price").value = product.u_price;
+                    found = true; 
+                    calculate();
+                    break;
+                }
+            }
+
+            if (!found) {
+                alert("Invalid Product ID. Please try again.");
+                document.getElementById("Pname").value = "";
+                document.getElementById("unit_price").value = "";
+                document.getElementById("total_price").value = "";
+                document.getElementById("qtyError").innerText = "";
+            }
+        }
+
+        function calculate() {
+            const unitPrice = document.getElementById("unit_price").value;
+            const q = document.getElementById("quantity").value;
+            const errorSpan = document.getElementById("qtyError");
+            const totalField = document.getElementById("total_price");
+
+            if (!unitPrice) return; 
+
+            if (q === "") {
+                errorSpan.innerText = "Quantity cannot be empty.";
+                totalField.value = "";
+            } else if (Number(q) <= 0) {
+                errorSpan.innerText = "Quantity must be greater than zero.";
+                totalField.value = "";
+            } else {
+                errorSpan.innerText = "";
+                totalField.value = unitPrice * Number(q);
+            }
+        }
+    </script>
+</body>
+</html>

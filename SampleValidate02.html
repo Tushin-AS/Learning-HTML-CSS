@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My Form</title>
+	<style>
+		.error {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+
+	<form id="myForm" novalidate>
+		<label for="email">Email</label>
+		<input type="email" name="email" id="email">
+		<span id="err1" class="error"></span>
+		<br><br>
+		<label for="password">Password</label>
+		<input type="password" name="password" id="password">
+		<span id="err2" class="error"></span>
+		<br><br>
+		<input type="submit" value="Login">
+	</form>
+	<script>
+		const myForm = document.getElementById("myForm");
+		myForm.addEventListener("submit", function(event) {
+			event.preventDefault();
+			const email = event.target.elements.email.value;
+			const password = event.target.elements.password.value;
+			const err1 = document.getElementById("err1");
+			const err2 = document.getElementById("err2");
+			err1.innerHTML = "";
+			err2.innerHTML = "";
+			let flag = true;
+			if (email === "") {
+				err1.innerHTML = "Please fill up the email properly";
+				flag = false;
+			}
+			else {
+				const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+				if (!regex.test(email)) {
+					err1.innerHTML = "Invalid Email";
+					flag = false;
+				}
+			}
+			if (password === "") {
+				err2.innerHTML = "Please fill up the password properly";
+				flag = false;
+			}
+			else {
+				if (password.length < 8) {
+					err2.innerHTML = "Password must be at least 8 characters";
+					flag = false;
+				}
+			}
+			if(flag === true) {
+				myForm.submit();
+			}
+		});			
+	</script>
+</body>
+</html>
